@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXUS // Engineering Team</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="cinematic-grain"></div>
+  <div class="vignette"></div>
+  <div class="scan-line"></div>
+  
+  <div class="letterbox-t">
+    <div class="tech-label">SYSTEM STATUS: <span class="accent-orange" style="font-weight:bold;">CONNECTED</span></div>
+    <div style="display:flex; gap:2rem;">
+      <div class="tech-label">TEAM: PROJECT_ERS</div>
+      <div class="tech-label">VER: 0.1.4_STABLE</div>
+    </div>
+  </div>
+  
+  <div class="letterbox-b">
+    <div style="display:flex; gap:3rem; align-items:center; height:100%;">
+      <div class="tech-label" style="border-right: 1px solid rgba(255,255,255,0.1); padding-right:1.5rem;">SCENE SELECTOR</div>
+      <div class="tech-label" style="display:flex; gap:1.5rem;" class="scene-nav">
+        <span class="accent-orange">01 INTRO</span>
+        <span>02 TEAM</span>
+        <span>03 LAB</span>
+        <span>04 MISSION</span>
+        <span>05 OUTRO</span>
+      </div>
+    </div>
+    <div class="tech-label" style="display:flex; align-items:center; gap:0.75rem;">
+      <div style="width:8px; height:8px; border-radius:50%; border:1px solid #FF3D00;"></div>
+      <span>SCROLL TO TRAVERSE WORLD</span>
+    </div>
+  </div>
+
+  <div id="loader">
+    <div class="loader-status">SYSTEM INITIALIZATION</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+    <div class="loader-text" id="loader-progress">01 / 05</div>
+    <button id="enter-btn" style="display:none;">ENTER EXPERIENCE &rarr;</button>
+  </div>
+
+  <canvas id="particles-bg"></canvas>
+
+  <div id="world">
+    <div id="camera">
+      <!-- 0: Intro -->
+      <div class="layer" data-z="0"><h1 class="text-huge">WE BUILD<br>SYSTEMS.</h1></div>
+      <div class="layer" data-z="-1000"><h1 class="text-huge">WE BUILD<br>PEOPLE'S<br>FUTURE.</h1></div>
+      <div class="layer" data-z="-2000"><h1 class="text-huge text-brand">NEXUS<br><span class="text-small">ENGINEERING</span></h1></div>
+
+      <!-- -3500: Team Reveal -->
+      <div class="layer team-reveal-container" data-z="-3500">
+        <div class="p-card" style="transform: translate3d(-60vw, 0, -1000px)"><img src="assets/team/member-01.jpg" onerror="this.src='https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500&q=80'"><span>01 CYBER</span></div>
+        <div class="p-card" style="transform: translate3d(-30vw, 0, -500px)"><img src="assets/team/member-02.jpg" onerror="this.src='https://images.unsplash.com/photo-1542903660-eedba28760ab?w=500&q=80'"><span>02 WEB</span></div>
+        <div class="p-card" style="transform: translate3d(0, 0, 0)"><img src="assets/team/member-03.jpg" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80'"><span>03 AI</span></div>
+        <div class="p-card" style="transform: translate3d(30vw, 0, -500px)"><img src="assets/team/member-04.jpg" onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80'"><span>04 MOBILE</span></div>
+        <div class="p-card" style="transform: translate3d(60vw, 0, -1000px)"><img src="assets/team/member-05.jpg" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&q=80'"><span>05 HARDWARE</span></div>
+      </div>
+
+      <!-- -5000: Member 1 Cyber -->
+      <div class="layer" data-z="-5000">
+        <div class="m-card">
+          <div class="m-image-container"><img src="assets/team/member-01.jpg" onerror="this.src='https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500&q=80'"></div>
+          <div class="m-info">
+            <div class="m-role">01 // CYBER SECURITY</div>
+            <h2 class="m-name">[MEMBER 01 NAME]</h2>
+            <h3 class="m-title">[EDITABLE ROLE]</h3>
+            <p class="m-bio">Architecting impenetrable defensive grids and conducting advanced penetration tests to ensure absolute data sovereignty across all distributed networks.</p>
+            <div class="m-resp">
+              <h4>RESPONSIBILITIES</h4>
+              <ul>
+                <li>Zero-day threat mitigation</li>
+                <li>Infrastructure hardening</li>
+                <li>Real-time packet inspection</li>
+              </ul>
+            </div>
+            <div class="m-tech-list">
+              <span>NETWORK SECURITY</span><span>PENTESTING</span><span>API SECURITY</span><span>LINUX</span><span>CRYPTOGRAPHY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- -6500: Member 2 Web -->
+      <div class="layer" data-z="-6500">
+        <div class="m-card alt">
+          <div class="m-image-container"><img src="assets/team/member-02.jpg" onerror="this.src='https://images.unsplash.com/photo-1542903660-eedba28760ab?w=500&q=80'"></div>
+          <div class="m-info">
+            <div class="m-role">02 // FULL STACK / WEB</div>
+            <h2 class="m-name">[MEMBER 02 NAME]</h2>
+            <h3 class="m-title">[EDITABLE ROLE]</h3>
+            <p class="m-bio">Master of distributed systems and intuitive user interfaces, bridging the gap between raw backend processing and seamless human interaction.</p>
+            <div class="m-resp">
+              <h4>RESPONSIBILITIES</h4>
+              <ul>
+                <li>Microservices architecture</li>
+                <li>High-performance web clients</li>
+                <li>Database optimization</li>
+              </ul>
+            </div>
+            <div class="m-tech-list">
+              <span>HTML/CSS</span><span>JAVASCRIPT</span><span>REACT</span><span>TYPESCRIPT</span><span>NODE.JS</span><span>POSTGRESQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- -8000: Member 3 AI -->
+      <div class="layer" data-z="-8000">
+        <div class="m-card">
+          <div class="m-image-container"><img src="assets/team/member-03.jpg" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80'"></div>
+          <div class="m-info">
+            <div class="m-role">03 // ARTIFICIAL INTELLIGENCE</div>
+            <h2 class="m-name">[MEMBER 03 NAME]</h2>
+            <h3 class="m-title">[EDITABLE ROLE]</h3>
+            <p class="m-bio">Pioneering predictive algorithms and deep learning models to process vast amounts of urban data, optimizing emergency response routing in real-time.</p>
+            <div class="m-resp">
+              <h4>RESPONSIBILITIES</h4>
+              <ul>
+                <li>Model training and deployment</li>
+                <li>Computer vision pipelines</li>
+                <li>Predictive analytics</li>
+              </ul>
+            </div>
+            <div class="m-tech-list">
+              <span>PYTHON</span><span>MACHINE LEARNING</span><span>COMPUTER VISION</span><span>DATA PROCESSING</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- -9500: Member 4 Mobile -->
+      <div class="layer" data-z="-9500">
+        <div class="m-card alt">
+          <div class="m-image-container"><img src="assets/team/member-04.jpg" onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80'"></div>
+          <div class="m-info">
+            <div class="m-role">04 // MOBILE ENGINEERING</div>
+            <h2 class="m-name">[MEMBER 04 NAME]</h2>
+            <h3 class="m-title">[EDITABLE ROLE]</h3>
+            <p class="m-bio">Delivering mission-critical real-time communication protocols directly to the hands of emergency responders through robust mobile applications.</p>
+            <div class="m-resp">
+              <h4>RESPONSIBILITIES</h4>
+              <ul>
+                <li>Cross-platform app development</li>
+                <li>Real-time socket integration</li>
+                <li>Offline-first data syncing</li>
+              </ul>
+            </div>
+            <div class="m-tech-list">
+              <span>REACT NATIVE</span><span>EXPO</span><span>TYPESCRIPT</span><span>REST API</span><span>WEBSOCKETS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- -11000: Member 5 Hardware -->
+      <div class="layer" data-z="-11000">
+        <div class="m-card">
+          <div class="m-image-container"><img src="assets/team/member-05.jpg" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&q=80'"></div>
+          <div class="m-info">
+            <div class="m-role">05 // HARDWARE ENGINEERING</div>
+            <h2 class="m-name">[MEMBER 05 NAME]</h2>
+            <h3 class="m-title">[EDITABLE ROLE]</h3>
+            <p class="m-bio">Designing rugged, low-latency microcontrollers and sensor arrays deployed directly in emergency vehicles and city infrastructure.</p>
+            <div class="m-resp">
+              <h4>RESPONSIBILITIES</h4>
+              <ul>
+                <li>PCB design and prototyping</li>
+                <li>Sensor calibration</li>
+                <li>RF communication modules</li>
+              </ul>
+            </div>
+            <div class="m-tech-list">
+              <span>PCB DESIGN</span><span>SENSORS</span><span>MICROCONTROLLERS</span><span>SIGNAL INTERFACE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Convergence -->
+      <div class="layer" data-z="-13000"><h1 class="text-huge">FIVE PEOPLE.</h1></div>
+      <div class="layer" data-z="-13500"><h1 class="text-huge">FIVE DISCIPLINES.</h1></div>
+      <div class="layer" data-z="-14000"><h1 class="text-huge text-brand">ONE SYSTEM.</h1></div>
+
+      <!-- Project -->
+      <div class="layer proj-intro" data-z="-15500">
+        <div class="proj-badge">PROJECT / 001</div>
+        <h1 class="text-huge">EMERGENCY<br>RESPONSE SYSTEM</h1>
+        <div class="proj-tags">
+          <span>AMBULANCE</span><span>TRAFFIC</span><span>AI</span><span>HOSPITAL</span><span>HARDWARE</span><span>BACKEND</span><span>SECURITY</span><span>MOBILE</span>
+        </div>
+      </div>
+
+      <!-- Case Study -->
+      <div class="layer" data-z="-17000">
+        <h1 class="text-brand text-small" style="margin-bottom: 2rem;">THE PROBLEM</h1>
+        <div class="case-text">Seconds cost lives. Urban density prevents ambulances from reaching emergencies in time.</div>
+      </div>
+      <div class="layer" data-z="-18000">
+        <h1 class="text-brand text-small" style="margin-bottom: 2rem;">THE IDEA</h1>
+        <div class="case-text">A decentralized AI network that preemptively clears traffic routes using predictive hardware modules and real-time syncing.</div>
+      </div>
+
+      <!-- Architecture 3D -->
+      <div class="layer arch-layer" data-z="-19500">
+        <div class="arch-center">AI CORE</div>
+        <div class="arch-item" style="transform: translate3d(-30vw, -20vh, 500px)">TRAFFIC DB</div>
+        <div class="arch-item" style="transform: translate3d(30vw, -20vh, 300px)">AMBULANCE SENSORS</div>
+        <div class="arch-item" style="transform: translate3d(-20vw, 25vh, -400px)">MOBILE APP</div>
+        <div class="arch-item" style="transform: translate3d(20vw, 25vh, -200px)">HOSPITAL PORTAL</div>
+      </div>
+
+      <!-- Lab Photos Wall -->
+      <div class="layer photo-wall" data-z="-21000">
+        <div class="photo-node" style="transform: translate3d(-30vw, -30vh, 500px)"><img src="assets/lab/lab-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=600'"></div>
+        <div class="photo-node" style="transform: translate3d(20vw, 20vh, 200px)"><img src="assets/lab/lab-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=600'"></div>
+        <div class="photo-node" style="transform: translate3d(-10vw, 10vh, -400px)"><img src="assets/lab/lab-3.jpg" onerror="this.src='https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=600'"></div>
+        <div class="photo-node" style="transform: translate3d(30vw, -20vh, -800px)"><img src="assets/lab/lab-4.jpg" onerror="this.src='https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=600'"></div>
+      </div>
+
+      <!-- Technology Floating -->
+      <div class="layer floating-tech" data-z="-23000">
+        <div class="tech-node" style="transform: translate3d(-25vw, -20vh, 600px)">REACT</div>
+        <div class="tech-node" style="transform: translate3d(25vw, 15vh, 300px)">NODE.JS</div>
+        <div class="tech-node" style="transform: translate3d(0, 0, 0)">PYTHON</div>
+        <div class="tech-node" style="transform: translate3d(-15vw, 25vh, -300px)">TENSORFLOW</div>
+        <div class="tech-node" style="transform: translate3d(20vw, -25vh, -600px)">HARDWARE IO</div>
+        <div class="tech-node" style="transform: translate3d(-30vw, 10vh, -800px)">POSTGRES</div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="layer" data-z="-24500">
+        <div style="display: flex; gap: 4rem; align-items: center; justify-content: center; transform-style: preserve-3d;">
+          <div class="text-small" style="transform: translate3d(-30vw, 0, 1500px); font-size: 2rem;">IDEA</div>
+          <div class="text-small" style="transform: translate3d(-15vw, 0, 800px); font-size: 2rem;">RESEARCH</div>
+          <div class="text-small" style="transform: translate3d(0, 0, 0); font-size: 2rem; color: #fff;">PROTOTYPE</div>
+          <div class="text-small" style="transform: translate3d(15vw, 0, -800px); font-size: 2rem;">TESTING</div>
+          <div class="text-small" style="transform: translate3d(30vw, 0, -1500px); font-size: 2rem;">ITERATION</div>
+        </div>
+      </div>
+
+      <!-- Outro -->
+      <div class="layer" data-z="-26000"><h1 class="text-huge">WE BUILD</h1></div>
+      <div class="layer" data-z="-26500"><h1 class="text-huge">TECHNOLOGY</h1></div>
+      <div class="layer" data-z="-27000"><h1 class="text-huge">THAT MOVES</h1></div>
+      <div class="layer" data-z="-27500"><h1 class="text-huge text-brand">PEOPLE FORWARD.</h1></div>
+
+      <!-- Contact -->
+      <div class="layer contact-scene" data-z="-29000">
+        <h1 class="text-huge">HAVE AN IDEA?</h1>
+        <h2 class="text-huge" style="font-size: clamp(2rem, 4vw, 4rem); margin-top: 1rem;">LET'S BUILD IT.</h2>
+        <div class="contact-box">
+           <input type="text" placeholder="NAME">
+           <input type="email" placeholder="EMAIL">
+           <textarea placeholder="MESSAGE"></textarea>
+           <button class="btn-primary">ENTER THE CONVERSATION &rarr;</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="scroll-proxy"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+  <script type="module" src="/script.js"></script>
+</body>
+</html>
